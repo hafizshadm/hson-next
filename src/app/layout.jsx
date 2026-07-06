@@ -1,6 +1,8 @@
 // Global stylesheet is served as a static file from /public/style.css (NOT
 // imported through the bundler) so its relative `url("assets/...")` references
 // keep resolving against /assets, exactly as in the original export.
+import "./mobile-nav.css";
+import MobileNav from "@/components/MobileNav";
 
 export const metadata = {
   metadataBase: new URL(
@@ -36,6 +38,7 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         />
         {children}
+        <MobileNav />
       </body>
     </html>
   );

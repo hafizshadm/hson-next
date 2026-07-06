@@ -1,0 +1,166 @@
+/* ==========================================================================
+   Mobile navigation — hamburger + full-screen menu overlay.
+   The original Webflow export hid the nav links at <=991px with no replacement
+   (only the footer carried them). This adds an accessible mobile menu that
+   appears exactly where the desktop links disappear.
+   ========================================================================== */
+
+.hson-burger {
+  display: none;
+}
+
+.hson-mobile-menu {
+  display: none;
+}
+
+/* Show the mobile machinery only where the desktop nav links are hidden. */
+@media screen and (max-width: 991px) {
+  /* The inline CTA is replaced by the hamburger on mobile. */
+  .navbar_wrap .navbar_right {
+    display: none !important;
+  }
+
+  .hson-burger {
+    position: fixed;
+    top: 1.75rem;
+    right: 1.5rem;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .hson-burger span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    margin-left: auto;
+    background: var(--_brand---colors--palette--black, #080909);
+    border-radius: 2px;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.2s ease, width 0.35s ease;
+  }
+
+  .hson-burger span:nth-child(2) {
+    width: 20px;
+  }
+
+  .hson-burger.is-open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    width: 26px;
+  }
+  .hson-burger.is-open span:nth-child(2) {
+    opacity: 0;
+  }
+  .hson-burger.is-open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+    width: 26px;
+  }
+
+  .hson-mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.25rem;
+    padding: 2rem;
+    background: var(--_brand---colors--palette--ivory, #fbf8ed);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+    pointer-events: none;
+  }
+
+  .hson-mobile-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .hson-mobile-menu_links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.35rem;
+  }
+
+  .hson-mobile-menu_link {
+    font-family: var(--_brand---typography--primary-font, "Overusedgrotesk Vf", Arial, sans-serif);
+    font-size: clamp(2rem, 11vw, 3rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    color: var(--_brand---colors--palette--black, #080909);
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.2s ease;
+  }
+
+  .hson-mobile-menu.is-open .hson-mobile-menu_link {
+    animation: hsonMenuItemIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .hson-mobile-menu.is-open .hson-mobile-menu_link:nth-child(1) { animation-delay: 0.08s; }
+  .hson-mobile-menu.is-open .hson-mobile-menu_link:nth-child(2) { animation-delay: 0.14s; }
+  .hson-mobile-menu.is-open .hson-mobile-menu_link:nth-child(3) { animation-delay: 0.2s; }
+  .hson-mobile-menu.is-open .hson-mobile-menu_link:nth-child(4) { animation-delay: 0.26s; }
+
+  .hson-mobile-menu_link:active {
+    opacity: 0.55;
+  }
+
+  .hson-mobile-menu_cta {
+    display: inline-block;
+    margin-top: 0.75rem;
+    padding: 1rem 2.25rem;
+    background: var(--_brand---colors--palette--black, #080909);
+    color: var(--_brand---colors--palette--white, #fbf8ed);
+    border-radius: 999px;
+    font-family: var(--_brand---typography--primary-font, "Overusedgrotesk Vf", Arial, sans-serif);
+    font-size: 1.05rem;
+    font-weight: 500;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  .hson-mobile-menu.is-open .hson-mobile-menu_cta {
+    animation: hsonMenuItemIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.32s forwards;
+  }
+}
+
+@keyframes hsonMenuItemIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .hson-burger {
+    top: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hson-mobile-menu,
+  .hson-mobile-menu.is-open .hson-mobile-menu_link,
+  .hson-mobile-menu.is-open .hson-mobile-menu_cta,
+  .hson-burger span {
+    transition: none;
+    animation: none;
+  }
+}
