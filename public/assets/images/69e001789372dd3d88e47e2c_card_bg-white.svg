@@ -1,0 +1,30 @@
+<svg width="640" height="422" viewBox="0 0 640 422" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_176_7320)">
+<g clip-path="url(#clip1_176_7320)">
+<rect opacity="0.5" x="739.405" y="10.9874" width="182.744" height="182.744" rx="91.3718" transform="rotate(-165 739.405 10.9874)" stroke="#121212" stroke-opacity="0.1" stroke-width="1.02531"/>
+<rect opacity="0.5" x="776.779" y="75.7198" width="288.451" height="288.451" rx="144.226" transform="rotate(-165 776.779 75.7198)" stroke="#121212" stroke-opacity="0.1" stroke-width="1.02531"/>
+<rect opacity="0.5" x="813.578" y="139.456" width="392.533" height="392.533" rx="196.266" transform="rotate(-165 813.578 139.456)" stroke="#121212" stroke-opacity="0.1" stroke-width="1.02531"/>
+<rect opacity="0.5" x="850.951" y="204.19" width="498.241" height="498.241" rx="249.12" transform="rotate(-165 850.951 204.19)" stroke="#121212" stroke-opacity="0.1" stroke-width="1.02531"/>
+<rect opacity="0.5" x="888.324" y="268.921" width="603.948" height="603.948" rx="301.974" transform="rotate(-165 888.324 268.921)" stroke="#121212" stroke-opacity="0.1" stroke-width="1.02531"/>
+<rect opacity="0.5" x="925.122" y="332.657" width="708.03" height="708.03" rx="354.015" transform="rotate(-165 925.122 332.657)" stroke="#121212" stroke-opacity="0.1" stroke-width="1.02531"/>
+<rect opacity="0.5" x="962.496" y="397.39" width="813.737" height="813.737" rx="406.869" transform="rotate(-165 962.496 397.39)" stroke="#121212" stroke-opacity="0.1" stroke-width="1.02531"/>
+<rect opacity="0.5" x="999.294" y="461.126" width="917.819" height="917.819" rx="458.909" transform="rotate(-165 999.294 461.126)" stroke="#121212" stroke-opacity="0.1" stroke-width="1.02531"/>
+<g opacity="0.5" filter="url(#filter0_f_176_7320)">
+<ellipse cx="672.901" cy="-93.8501" rx="86.1925" ry="83.7531" transform="rotate(-165 672.901 -93.8501)" fill="#1182E9"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_176_7320" x="575.058" y="-189.58" width="195.685" height="191.46" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="5.89524" result="effect1_foregroundBlur_176_7320"/>
+</filter>
+<clipPath id="clip0_176_7320">
+<rect width="640" height="422" fill="white"/>
+</clipPath>
+<clipPath id="clip1_176_7320">
+<rect width="1312.4" height="444.786" fill="white" transform="translate(1172.68 576.305) rotate(-165)"/>
+</clipPath>
+</defs>
+</svg>
