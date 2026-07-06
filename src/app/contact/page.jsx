@@ -1,5 +1,5 @@
 import content from "@/content/contact";
-import SiteScripts, { SCRIPTS } from "@/components/SiteScripts";
+import SiteScripts from "@/components/SiteScripts";
 
 export const metadata = {
   title: "Contact Hson | Marketing Agency for the Gulf Region",
@@ -11,7 +11,7 @@ export default function ContactPage() {
   return (
     <>
       <div dangerouslySetInnerHTML={{ __html: content }} />
-      <SiteScripts scripts={SCRIPTS.contact} />
+      <SiteScripts page="contact" />
     </>
   );
 }

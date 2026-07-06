@@ -1,5 +1,5 @@
 import content from "@/content/services";
-import SiteScripts, { SCRIPTS } from "@/components/SiteScripts";
+import SiteScripts from "@/components/SiteScripts";
 
 export const metadata = {
   title: "Marketing, Branding & Web Services | Hson – Gulf Agency",
@@ -11,7 +11,7 @@ export default function ServicesPage() {
   return (
     <>
       <div dangerouslySetInnerHTML={{ __html: content }} />
-      <SiteScripts scripts={SCRIPTS.services} />
+      <SiteScripts page="services" />
     </>
   );
 }

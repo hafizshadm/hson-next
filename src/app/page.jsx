@@ -1,5 +1,5 @@
 import content from "@/content/home";
-import SiteScripts, { SCRIPTS } from "@/components/SiteScripts";
+import SiteScripts from "@/components/SiteScripts";
 
 export const metadata = {
   title: "Hson | Marketing & Digital Agency for the Gulf Region",
@@ -39,7 +39,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
       />
       <div dangerouslySetInnerHTML={{ __html: content }} />
-      <SiteScripts scripts={SCRIPTS.home} />
+      <SiteScripts page="home" />
     </>
   );
 }
