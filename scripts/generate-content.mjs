@@ -11,7 +11,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const SRC = join(__dirname, "..", "..", "frontend");
+const SRC = join(__dirname, "..", "frontend");
 const OUT = join(__dirname, "..", "src", "content");
 
 const pages = [
@@ -19,6 +19,8 @@ const pages = [
   { file: "services.html", out: "services.js" },
   { file: "about.html", out: "about.js" },
   { file: "contact.html", out: "contact.js" },
+  { file: "team.html", out: "team.js" },
+  { file: "partners.html", out: "partners.js" },
 ];
 
 function extractBody(html) {

@@ -44,6 +44,18 @@ const SCRIPTS = {
     "/assets/hsn.schunk.contact.js",
     ...GSAP_STACK,
   ],
+  team: [
+    "/assets/jquery.min.js",
+    "/assets/hsn.schunk.js",
+    "/assets/hsn.about.js",
+    ...GSAP_STACK,
+  ],
+  partners: [
+    "/assets/jquery.min.js",
+    "/assets/hsn.schunk.js",
+    "/assets/hsn.about.js",
+    ...GSAP_STACK,
+  ],
 };
 
 /**

@@ -12,11 +12,11 @@ load. To preserve that behaviour exactly while moving to Next.js:
 - **Markup** — each original page's `<body>` is preserved verbatim and rendered
   via `dangerouslySetInnerHTML`. This keeps every Webflow attribute intact
   (uppercase `STYLE`, CSS custom properties, `srcset`, boolean `<video>` attrs,
-  form controls) that a hand JSX rewrite would break. The markup lives in
-  `src/content/*.js`, generated from `../frontend/*.html` by
-  `scripts/generate-content.mjs`. Internal links and asset paths are rewritten
-  to app routes (`/`, `/services`, `/about`, `/contact`) and absolute
-  `/assets/...` URLs.
+  form controls) that a hand JSX rewrite would break. **`frontend/*.html` is the
+  source of truth — edit those, never `src/content/*.js`**, which are generated
+  from them by `scripts/generate-content.mjs`. Internal links and asset paths are
+  rewritten to app routes (`/`, `/about`, `/services`, `/team`, `/partners`,
+  `/contact`) and absolute `/assets/...` URLs.
 - **CSS** — `style.css` is served as a static file from `public/style.css` (not
   imported through the bundler) so its relative `url("assets/...")` references
   keep resolving against `public/assets`.
@@ -29,12 +29,18 @@ load. To preserve that behaviour exactly while moving to Next.js:
 
 ## Routes
 
-| Route       | Source page             |
-| ----------- | ----------------------- |
-| `/`         | `frontend/index.html`   |
-| `/services` | `frontend/services.html`|
-| `/about`    | `frontend/about.html`   |
-| `/contact`  | `frontend/contact.html` |
+| Route       | Source page              |
+| ----------- | ------------------------ |
+| `/`         | `frontend/index.html`    |
+| `/about`    | `frontend/about.html`    |
+| `/services` | `frontend/services.html` |
+| `/team`     | `frontend/team.html`     |
+| `/partners` | `frontend/partners.html` |
+| `/contact`  | `frontend/contact.html`  |
+
+To add a route: create `frontend/<page>.html`, register it in the `pages` array
+in `scripts/generate-content.mjs`, add a script manifest entry in
+`src/components/SiteScripts.jsx`, and add `src/app/<page>/page.jsx`.
 
 ## Develop
 
@@ -45,7 +51,8 @@ npm run dev        # http://localhost:3000
 
 ## Regenerate markup
 
-If you edit the original `frontend/*.html`, re-run:
+After editing any `frontend/*.html`, re-run this or the change will not reach the
+site — the app renders `src/content/*.js`, not the HTML directly:
 
 ```bash
 npm run generate:content

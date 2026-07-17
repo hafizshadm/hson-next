@@ -1,22 +1,22 @@
 import content from "@/content/home";
 import SiteScripts from "@/components/SiteScripts";
 
+const DESCRIPTION =
+  "Hson plans and runs marketing, branding, and web/app projects for brands across the GCC and the UK. See how we work.";
+
 export const metadata = {
-  title: "Hson | Marketing & Digital Agency for the Gulf Region",
-  description:
-    "Hson plans and runs marketing, branding, and web/app projects for businesses across the UAE, Saudi Arabia, and the wider Gulf. See how we work.",
+  title: "Hson | Making You Visible",
+  description: DESCRIPTION,
   openGraph: {
     type: "website",
-    title: "Hson | Marketing & Digital Agency for the Gulf Region",
-    description:
-      "Hson plans and runs marketing, branding, and web/app projects for businesses across the UAE, Saudi Arabia, and the wider Gulf. See how we work.",
+    title: "Hson | Making You Visible",
+    description: DESCRIPTION,
     images: ["/assets/images/opengraph.jpg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hson | Marketing & Digital Agency for the Gulf Region",
-    description:
-      "Hson plans and runs marketing, branding, and web/app projects for businesses across the UAE, Saudi Arabia, and the wider Gulf. See how we work.",
+    title: "Hson | Making You Visible",
+    description: DESCRIPTION,
   },
 };
 
@@ -26,9 +26,18 @@ const orgJsonLd = {
   name: "Hson",
   url: "/",
   description:
-    "Marketing and digital agency for the Gulf region. Strategy, content, ads, branding, and development under one team.",
-  slogan: "Marketing That's Built to Work in the Gulf, Not Adapted to It",
-  areaServed: ["UAE", "Saudi Arabia", "Qatar", "Kuwait", "Bahrain", "Oman"],
+    "Marketing and digital agency for the GCC. Strategy, content, ads, branding, and development under one team.",
+  slogan: "Making You Visible",
+  sameAs: ["https://www.instagram.com/hson.agency/"],
+  areaServed: [
+    "UAE",
+    "Saudi Arabia",
+    "Qatar",
+    "Kuwait",
+    "Bahrain",
+    "Oman",
+    "United Kingdom",
+  ],
 };
 
 export default function HomePage() {

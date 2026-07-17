@@ -2,9 +2,9 @@ import content from "@/content/services";
 import SiteScripts from "@/components/SiteScripts";
 
 export const metadata = {
-  title: "Marketing, Branding & Web Services | Hson – Gulf Agency",
+  title: "Marketing, Branding & Web Services | Hson",
   description:
-    "Ten specialist services under one team — content, social, ads, branding, photography, SEO/AEO/GEO, automations, and web/app development for the Gulf.",
+    "Eleven specialist services under one team — content, social, ads, branding, photography, SEO/AEO/GEO, behavioural intelligence, automations, and web/app development.",
 };
 
 export default function ServicesPage() {

@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 
 const LINKS = [
   { href: "/", label: "Home" },
+  { href: "/about", label: "About Us" },
   { href: "/services", label: "Services" },
-  { href: "/about", label: "About" },
+  { href: "/team", label: "Our Team" },
+  { href: "/partners", label: "Trusted Partners" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -70,11 +72,13 @@ export default function MobileNav() {
           ))}
         </nav>
         <a
-          href="/contact"
+          href="https://calendly.com/hsonagency/marketingconsultation"
+          target="_blank"
+          rel="noopener"
           className="hson-mobile-menu_cta"
           onClick={() => setOpen(false)}
         >
-          Book a Free Strategy Call
+          Book a Meeting
         </a>
       </div>
     </>
