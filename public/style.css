@@ -8371,36 +8371,47 @@ a, button, .filter_tag, .industry_tag, .location_tag {
   padding: 0;
 }
 
+/* Logo tiles. The supplied logos are mostly dark artwork (Peugeot, Vuse, Keth,
+   VW) and the slider sits on black, so they cannot go straight onto the page —
+   they would vanish. Each sits on its own white tile instead, which also keeps
+   every brand's real colours rather than recolouring someone's trademark, and
+   copes with the mixed sources (transparent PNG, white JPEG, colour tiles like
+   Kumo and Ludo Star) in one consistent treatment. */
 .partner_mark,
 .partner_plate {
-  height: 4.4em;
-  padding: 0 1.6em;
-  border: 1px solid rgba(251, 248, 237, 0.16);
+  background-color: #fff;
   border-radius: 0.75em;
-  color: var(--_brand---colors--palette--ivory);
-  font-size: var(--_brand---typography--text--regular);
-  font-weight: var(--_brand---font-weight--medium);
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-  opacity: 0.72;
+  width: 12em;
+  height: 5.4em;
+  padding: 1em 1.25em;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: opacity 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: inline-flex;
 }
 
 .partner_mark img,
 .partner_plate img {
   object-fit: contain;
-  max-height: 2.2em;
-  max-width: 9em;
+  width: 100%;
+  height: 100%;
   display: block;
 }
 
+/* Fallback for a partner with no logo supplied yet. */
+.partner_mark.is--text,
+.partner_plate.is--text {
+  color: var(--_brand---colors--palette--black);
+  font-size: var(--_brand---typography--text--small);
+  font-weight: var(--_brand---font-weight--medium);
+  text-align: center;
+  white-space: nowrap;
+}
+
 .partner_mark:hover {
-  border-color: rgba(150, 121, 74, 0.55);
-  opacity: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 0.75em 1.75em rgba(8, 9, 9, 0.35);
 }
 
 .partners_grid {
@@ -8410,21 +8421,18 @@ a, button, .filter_tag, .industry_tag, .location_tag {
   display: grid;
 }
 
-/* The full list sits on the light section, so it flips to dark-on-light. */
+/* The full list sits on the light section: the white tiles need a hairline so
+   they read as cards against the ivory rather than floating. */
 .partners_grid .partner_plate {
-  color: var(--_brand---colors--palette--black);
-  border-color: rgba(8, 9, 9, 0.12);
-  padding: 0 1em;
-  font-size: var(--_brand---typography--text--small);
-  text-align: center;
-  white-space: normal;
-  opacity: 0.78;
+  border: 1px solid rgba(8, 9, 9, 0.1);
+  width: 100%;
+  height: 6em;
 }
 
 .partners_grid .partner_plate:hover {
-  border-color: rgba(150, 121, 74, 0.5);
-  opacity: 1;
+  border-color: rgba(150, 121, 74, 0.45);
   transform: translateY(-2px);
+  box-shadow: 0 0.6em 1.5em rgba(8, 9, 9, 0.08);
 }
 
 @media screen and (max-width: 991px) {
@@ -8454,6 +8462,171 @@ a, button, .filter_tag, .industry_tag, .location_tag {
   .partner_plate {
     height: 3.6em;
     padding: 0 1.1em;
+    font-size: var(--_brand---typography--text--small);
+  }
+}
+/* ---------------------------------------------------------------------------
+   Stacked hero (/home-duplicate) — big H1, a 3D curved image wall, then the
+   description.
+
+   The wall is a concave cylinder, not the site's arc-marquee: the stage owns the
+   perspective, the track keeps a real 3D space (preserve-3d), and
+   hson.curve-hero.js positions each panel with translate3d(x, 0, z) rotateY(...)
+   so panels toward the edges turn away from the camera and sit further back.
+   The side fades dissolve the wall into the page instead of cutting it off.
+   --------------------------------------------------------------------------- */
+
+.section_hero.is--stacked {
+  padding-top: 19vh;
+  padding-bottom: 4em;
+  overflow: hidden;
+}
+
+.hero-stack {
+  text-align: center;
+  width: 100%;
+}
+
+.hero-stack_heading {
+  max-width: 14ch;
+  margin: 0 auto;
+  color: var(--_brand---colors--palette--black);
+  font-size: var(--_brand---typography--display--xlarge);
+  font-weight: var(--_brand---font-weight--normal);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  position: relative;
+}
+
+/* The stage is deliberately taller than the panels: overflow is hidden to clip
+   the wall's ends, so it needs headroom or it shears off each panel's drop
+   shadow. That headroom is dead space, which is what the negative margins claw
+   back — they keep the visible gaps around the wall tight even though the stage
+   box is much bigger than the images inside it. Adjust STAGE_PAD below if you
+   change either height: it is (curve-stage height - curve-panel height) / 2. */
+.hero-stack_curve {
+  width: 100%;
+  margin-top: -1.75em;  /* stage headroom is 4.5em; net gap under the H1 ~2.75em */
+  margin-bottom: -2.5em; /* net gap above the description ~2em */
+  position: relative;
+}
+
+.curve-stage {
+  perspective: 1150px;
+  perspective-origin: 50% 50%;
+  width: 100%;
+  height: 28em;
+  position: relative;
+  overflow: hidden;
+}
+
+.curve-track {
+  transform-style: preserve-3d;
+  position: absolute;
+  inset: 0;
+}
+
+.curve-panel {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform;
+  border-radius: 0.5em;
+  width: 15em;
+  height: 19em;
+  margin-top: -9.5em;
+  transition: opacity 0.35s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  overflow: hidden;
+  box-shadow: 0 1.5em 3em rgba(8, 9, 9, 0.18);
+}
+
+.curve-img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Dissolve both ends of the wall into the page background. */
+.curve-fade {
+  z-index: 2;
+  pointer-events: none;
+  background-image: linear-gradient(90deg, var(--_brand---colors--palette--white) 8%, rgba(251, 248, 237, 0));
+  width: 14em;
+  position: absolute;
+  inset: 0 auto 0 -1px;
+}
+
+.curve-fade.is--right {
+  background-image: linear-gradient(270deg, var(--_brand---colors--palette--white) 8%, rgba(251, 248, 237, 0));
+  inset: 0 -1px 0 auto;
+}
+
+.hero-stack_text {
+  max-width: 52ch;
+  margin: 0 auto;
+  color: var(--_brand---colors--palette--black);
+  font-size: var(--_brand---typography--text--regular);
+  line-height: var(--_brand---line-height--airy);
+  opacity: 0.8;
+  position: relative;
+}
+
+@media screen and (max-width: 991px) {
+  .section_hero.is--stacked {
+    padding-top: 17vh;
+  }
+
+  .hero-stack_curve {
+    margin-top: -1em;
+    margin-bottom: -1.75em;
+  }
+
+  .curve-stage {
+    perspective: 900px;
+    height: 22em;
+  }
+
+  .curve-panel {
+    width: 11em;
+    height: 15em;
+    margin-top: -7.5em;
+  }
+
+  .curve-fade {
+    width: 7em;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .hero-stack_heading {
+    max-width: 12ch;
+  }
+
+  .hero-stack_curve {
+    margin-top: -0.75em;
+    margin-bottom: -1.25em;
+  }
+
+  .curve-stage {
+    perspective: 620px;
+    height: 17em;
+  }
+
+  .curve-panel {
+    width: 8em;
+    height: 11.5em;
+    margin-top: -5.75em;
+  }
+
+  .curve-fade {
+    width: 3.5em;
+  }
+
+  .hero-stack_text {
+    max-width: 38ch;
     font-size: var(--_brand---typography--text--small);
   }
 }

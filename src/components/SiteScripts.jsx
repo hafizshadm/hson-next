@@ -19,7 +19,17 @@ const GSAP_STACK = [
  * proxies on the server, so SCRIPTS.home would arrive as undefined).
  */
 const SCRIPTS = {
+  // Home's hero is the 3D curved wall, which needs its own self-contained
+  // script (no GSAP dependency; binds only to [data-curve-marquee]).
   home: [
+    "/assets/jquery.min.js",
+    "/assets/hsn.schunk.js",
+    "/assets/hsn.main.js",
+    ...GSAP_STACK,
+    "/hson.curve-hero.js",
+  ],
+  // The previous arc-marquee hero, archived at /home-old.
+  "home-old": [
     "/assets/jquery.min.js",
     "/assets/hsn.schunk.js",
     "/assets/hsn.main.js",

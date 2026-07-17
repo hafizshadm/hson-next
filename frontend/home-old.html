@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Hson | Making You Visible</title>
+  <title>Hson | Making You Visible (previous hero)</title>
   <link rel="stylesheet" href="style.css"/>
   <link rel="preload" href="assets/fonts/OverusedGrotesk-VF.ttf" as="font" type="font/ttf" crossorigin="anonymous"/>
   <link rel="icon" href="favicon.png" type="image/png" sizes="32x32"/>
@@ -113,31 +113,48 @@
           </div>
         </nav>
 
-        <!-- Hero Section — big H1, then a 3D curved image wall, then the
-             description. The wall is a concave cylinder: hson.curve-hero.js
-             places each panel with translate3d + rotateY so the edges turn away
-             from the camera and recede. -->
-        <section class="section_hero is--stacked">
-          <div class="hero-stack">
-            <h1 class="hero-stack_heading" data-text-fade="">Making You Visible</h1>
-            <div class="hero-stack_curve">
-              <div class="curve-stage" data-curve-marquee="" data-curve-speed="52" data-curve-angle="48" data-curve-depth="460" data-curve-pause-hover="">
-                <div class="curve-track" data-curve-track="">
-                  <div class="curve-panel"><img src="/assets/images/hero-01.avif" alt="Hson campaign portrait: model in a black suit and pink tie holding a lipstick to one eye" loading="eager" decoding="async" width="800" height="1000" class="curve-img"/></div>
-                  <div class="curve-panel"><img src="/assets/images/hero-02.avif" alt="Hson campaign portrait: model in a navy suit with red leather gloves and a burgundy tote" loading="eager" decoding="async" width="800" height="1000" class="curve-img"/></div>
-                  <div class="curve-panel"><img src="/assets/images/hero-03.avif" alt="Hson campaign portrait: model in a black suit covered in Hson sticky notes" loading="eager" decoding="async" width="800" height="1000" class="curve-img"/></div>
-                  <div class="curve-panel"><img src="/assets/images/hero-04.avif" alt="Hson content for Keth Coffee: an iced coffee balanced on a cap against a blue backdrop" loading="eager" decoding="async" width="800" height="1000" class="curve-img"/></div>
-                  <div class="curve-panel"><img src="/assets/images/hero-05.avif" alt="Hson campaign shot: model on a corded phone in front of a whiteboard of channel plans" loading="eager" decoding="async" width="800" height="1000" class="curve-img"/></div>
-                  <div class="curve-panel"><img src="/assets/images/hero-06.avif" alt="Hson campaign shot: model in a white shirt and trainers seated on a studio desk" loading="lazy" decoding="async" width="800" height="1000" class="curve-img"/></div>
-                  <div class="curve-panel"><img src="/assets/images/hero-07.avif" alt="Hson Raw Frame campaign artwork shot on location in the desert" loading="lazy" decoding="async" width="800" height="1000" class="curve-img"/></div>
-                  <div class="curve-panel"><img src="/assets/images/hero-08.avif" alt="Hson content for Kumo: a matcha cup on the bonnet of a red sports car in Bahrain" loading="lazy" decoding="async" width="800" height="1000" class="curve-img"/></div>
-                  <div class="curve-panel"><img src="/assets/images/hero-09.avif" alt="Hson campaign portrait: model in a red leather jacket seated on a bathroom counter" loading="lazy" decoding="async" width="800" height="1000" class="curve-img"/></div>
+        <!-- Hero Section (kept exactly as template structure) -->
+        <section class="section_hero">
+          <div class="hero_marquee">
+            <div data-arc-marquee-speed="60" data-arc-marquee="" class="arc-marquee_wrap">
+              <div data-arc-marquee-track="" class="arc-marquee_track">
+                <div data-arc-marquee-item="" class="arc-marquee_item">
+                  <img sizes="(max-width: 1250px) 100vw, 1250px" srcset="/assets/images/69e0f3d26e2f2ec2a39a0573_img-1-p-500.avif 500w, /assets/images/69e0f3d26e2f2ec2a39a0573_img-1-p-800.avif 800w, /assets/images/69e0f3d26e2f2ec2a39a0573_img-1.avif 1250w" src="/assets/images/69e0f3d26e2f2ec2a39a0573_img-1.avif" loading="eager" alt="" class="arc-marquee_image"/>
+                </div>
+                <div data-arc-marquee-item="" class="arc-marquee_item">
+                  <img sizes="(max-width: 767px) 100vw, (max-width: 991px) 728px, 940px" srcset="/assets/images/69e0f33397d684a8ff2b3067_img-2-p-500.avif 500w, /assets/images/69e0f33397d684a8ff2b3067_img-2-p-800.avif 800w, /assets/images/69e0f33397d684a8ff2b3067_img-2.avif 1392w" src="/assets/images/69e0f33397d684a8ff2b3067_img-2.avif" loading="eager" alt="" class="arc-marquee_image"/>
+                </div>
+                <div data-arc-marquee-item="" class="arc-marquee_item">
+                  <img src="/assets/images/69e0f3d2fb870ba4f870b965_img-3.avif" loading="eager" alt="" class="arc-marquee_image"/>
+                </div>
+                <div data-arc-marquee-item="" class="arc-marquee_item">
+                  <img sizes="(max-width: 1080px) 100vw, 1080px" srcset="/assets/images/69e0f3342d1a9e18150aad0d_img-4-p-500.avif 500w, /assets/images/69e0f3342d1a9e18150aad0d_img-4-p-800.avif 800w, /assets/images/69e0f3342d1a9e18150aad0d_img-4-p-1080.avif 1080w, /assets/images/69e0f3342d1a9e18150aad0d_img-4.avif 1392w" src="/assets/images/69e0f3342d1a9e18150aad0d_img-4.avif" loading="eager" alt="" class="arc-marquee_image"/>
+                </div>
+                <div data-arc-marquee-item="" class="arc-marquee_item">
+                  <img src="/assets/images/69e0f334968774067c609c1a_img-5.avif" loading="eager" alt="" class="arc-marquee_image"/>
+                </div>
+                <div data-arc-marquee-item="" class="arc-marquee_item">
+                  <img sizes="(max-width: 1080px) 100vw, 1080px" srcset="/assets/images/69e0f3d3512d59fc55886cd9_img-6-p-500.avif 500w, /assets/images/69e0f3d3512d59fc55886cd9_img-6-p-800.avif 800w, /assets/images/69e0f3d3512d59fc55886cd9_img-6-p-1080.avif 1080w, /assets/images/69e0f3d3512d59fc55886cd9_img-6.avif 1392w" src="/assets/images/69e0f3d3512d59fc55886cd9_img-6.avif" loading="eager" alt="" class="arc-marquee_image"/>
+                </div>
+                <div data-arc-marquee-item="" class="arc-marquee_item">
+                  <img sizes="(max-width: 1250px) 100vw, 1250px" srcset="/assets/images/69e0f3d3d43a623c710931b8_img-7-p-500.avif 500w, /assets/images/69e0f3d3d43a623c710931b8_img-7-p-800.avif 800w, /assets/images/69e0f3d3d43a623c710931b8_img-7.avif 1250w" src="/assets/images/69e0f3d3d43a623c710931b8_img-7.avif" loading="eager" alt="" class="arc-marquee_image"/>
+                </div>
+                <div data-arc-marquee-item="" class="arc-marquee_item">
+                  <img sizes="(max-width: 1250px) 100vw, 1250px" srcset="/assets/images/69e0f3342d1a9e18150aad09_img-8-p-500.avif 500w, /assets/images/69e0f3342d1a9e18150aad09_img-8-p-800.avif 800w, /assets/images/69e0f3342d1a9e18150aad09_img-8.avif 1250w" src="/assets/images/69e0f3342d1a9e18150aad09_img-8.avif" loading="eager" alt="" class="arc-marquee_image"/>
                 </div>
               </div>
-              <div class="curve-fade" aria-hidden="true"></div>
-              <div class="curve-fade is--right" aria-hidden="true"></div>
             </div>
-            <p class="hero-stack_text">We build campaigns, content, and websites around how people across the GCC and the UK actually search, scroll, and buy — then run it all with one team.</p>
+          </div>
+          <div class="hero_component">
+            <div class="hero_bottom">
+              <div class="hero_bottom_content">
+                <h1 class="heading-style-h1 hero_heading" data-text-fade="">Making You Visible</h1>
+                <p class="text-size-regular hero_bottom_subtitle">We build campaigns, content, and websites around how people across the GCC and the UK actually search, scroll, and buy — then run it all with one team.</p>
+              </div>
+            </div>
+            <div class="hero_scroll-indicator">
+              <div class="hero_scroll-line"></div>
+            </div>
           </div>
           <div class="bg_animation">
             <div class="bg_animation-wrap is--top">
@@ -681,6 +698,5 @@
   <script src="assets/SplitText.min.js" defer></script>
   <script src="assets/ScrambleTextPlugin.min.js" defer></script>
   <script src="script.js" defer></script>
-  <script src="hson.curve-hero.js" defer></script>
 </body>
 </html>

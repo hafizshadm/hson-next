@@ -1,0 +1,162 @@
+/* First-load overlay — see src/components/Loader.jsx for the behaviour.
+   Concept: the mark starts almost invisible and is filled in as the page loads,
+   then the panel splits and lifts away. */
+
+.hson-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Overused Grotesk", "Overused Grotesk VF", system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+
+  /* Failsafe. The overlay is server-rendered so there is no flash before
+     hydration, which also means a JS error would otherwise cover the site
+     forever. This hides it at 8s regardless of what JS does; the component
+     normally removes it long before. */
+  animation: hson-loader-failsafe 0s linear 8s forwards;
+}
+
+@keyframes hson-loader-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+/* Two halves that part on exit. */
+.hson-loader_panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50.5%; /* slight overlap so no hairline shows down the seam */
+  background-color: #fbf8ed;
+  transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.hson-loader_panel.is--top {
+  top: 0;
+}
+
+.hson-loader_panel.is--bottom {
+  bottom: 0;
+}
+
+.hson-loader.is-leaving .hson-loader_panel.is--top {
+  transform: translateY(-100%);
+}
+
+.hson-loader.is-leaving .hson-loader_panel.is--bottom {
+  transform: translateY(100%);
+}
+
+.hson-loader_inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: min(22rem, 74vw);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.hson-loader.is-leaving .hson-loader_inner {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+/* The mark: a ghost copy, plus a solid copy clipped to progress rising through
+   it. --p is set inline by the component. */
+.hson-loader_mark {
+  position: relative;
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.hson-loader_mark-ghost,
+.hson-loader_mark-fill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hson-loader_mark-ghost {
+  opacity: 0.13;
+}
+
+.hson-loader_mark-fill {
+  clip-path: inset(calc(100% - var(--p, 0%)) 0 0 0);
+  transition: clip-path 0.25s linear;
+}
+
+.hson-loader_meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+}
+
+.hson-loader_word {
+  color: #080909;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.hson-loader_count {
+  color: #96794a;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+}
+
+.hson-loader_bar {
+  position: relative;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(8, 9, 9, 0.12);
+  overflow: hidden;
+}
+
+.hson-loader_bar-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--p, 0%);
+  background-color: #96794a;
+  transition: width 0.25s linear;
+}
+
+/* Hold the page still while the overlay is up. */
+html.hson-loading,
+html.hson-loading body {
+  overflow: hidden;
+}
+
+/* No JS: never show the overlay, or the site would be unreachable. */
+@media (prefers-reduced-motion: reduce) {
+  .hson-loader {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .hson-loader_mark {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .hson-loader_word {
+    font-size: 0.625rem;
+    letter-spacing: 0.14em;
+  }
+}
