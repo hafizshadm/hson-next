@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 
 const LINKS = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About Us" },
   { href: "/services", label: "Services" },
+  { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -74,7 +74,7 @@ export default function MobileNav() {
           className="hson-mobile-menu_cta"
           onClick={() => setOpen(false)}
         >
-          Get in Touch
+          Book a Free Strategy Call
         </a>
       </div>
     </>

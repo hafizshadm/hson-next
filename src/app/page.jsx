@@ -4,19 +4,19 @@ import SiteScripts from "@/components/SiteScripts";
 export const metadata = {
   title: "Hson | Marketing & Digital Agency for the Gulf Region",
   description:
-    "Hson plans and runs marketing, branding, and web/app projects for businesses across the GCC and beyond. See how we work.",
+    "Hson plans and runs marketing, branding, and web/app projects for businesses across the UAE, Saudi Arabia, and the wider Gulf. See how we work.",
   openGraph: {
     type: "website",
     title: "Hson | Marketing & Digital Agency for the Gulf Region",
     description:
-      "Hson plans and runs marketing, branding, and web/app projects for businesses across the GCC and beyond. See how we work.",
+      "Hson plans and runs marketing, branding, and web/app projects for businesses across the UAE, Saudi Arabia, and the wider Gulf. See how we work.",
     images: ["/assets/images/opengraph.jpg"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Hson | Marketing & Digital Agency for the Gulf Region",
     description:
-      "Hson plans and runs marketing, branding, and web/app projects for businesses across the GCC and beyond. See how we work.",
+      "Hson plans and runs marketing, branding, and web/app projects for businesses across the UAE, Saudi Arabia, and the wider Gulf. See how we work.",
   },
 };
 
@@ -27,8 +27,8 @@ const orgJsonLd = {
   url: "/",
   description:
     "Marketing and digital agency for the Gulf region. Strategy, content, ads, branding, and development under one team.",
-  slogan: "Making You Visible",
-  areaServed: ["GCC", "UK"],
+  slogan: "Marketing That's Built to Work in the Gulf, Not Adapted to It",
+  areaServed: ["UAE", "Saudi Arabia", "Qatar", "Kuwait", "Bahrain", "Oman"],
 };
 
 export default function HomePage() {
