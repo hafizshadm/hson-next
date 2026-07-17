@@ -4,7 +4,7 @@ import SiteScripts from "@/components/SiteScripts";
 export const metadata = {
   title: "About Hson | Marketing Consultants Working Across the Gulf",
   description:
-    "Who Hson is: one team running strategy, creative, and build for businesses across the UAE, Saudi Arabia, and the wider Gulf region.",
+    "Who Hson is: one team running strategy, creative, and build for businesses across the GCC and beyond.",
 };
 
 export default function AboutPage() {
