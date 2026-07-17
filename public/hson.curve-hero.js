@@ -100,12 +100,11 @@
 
     measure();
     render();
+    // Only now are the panels off the shared centre origin and actually on the
+    // wall. The stylesheet keeps the track hidden until this lands, so the
+    // stacked-panel state is never painted.
+    stage.classList.add("is-ready");
     requestAnimationFrame(frame);
-
-    if (stage.hasAttribute("data-curve-pause-hover")) {
-      stage.addEventListener("mouseenter", function () { paused = true; });
-      stage.addEventListener("mouseleave", function () { paused = false; });
-    }
 
     var resizeTimer;
     window.addEventListener("resize", function () {

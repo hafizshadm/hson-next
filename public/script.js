@@ -1189,8 +1189,7 @@ function initMarquee() {
         const CONFIG = {
             speed: parseFloat(wrap.getAttribute('data-marquee-speed') || '60'),
             direction: (wrap.getAttribute('data-marquee-direction') || 'left').toLowerCase(),
-            gap: wrap.getAttribute('data-marquee-gap') || '0rem',
-            pauseOnHover: wrap.hasAttribute('data-marquee-pause-hover')
+            gap: wrap.getAttribute('data-marquee-gap') || '0rem'
         };
 
         let tween = null;
@@ -1305,30 +1304,6 @@ function initMarquee() {
                 );
 
             }, wrap);
-
-            setupHoverEvents();
-        }
-
-        function setupHoverEvents() {
-            if (!CONFIG.pauseOnHover) return;
-
-            wrap.removeEventListener('mouseenter', handleMouseEnter);
-            wrap.removeEventListener('mouseleave', handleMouseLeave);
-
-            wrap.addEventListener('mouseenter', handleMouseEnter);
-            wrap.addEventListener('mouseleave', handleMouseLeave);
-        }
-
-        function handleMouseEnter() {
-            if (tween) {
-                tween.pause();
-            }
-        }
-
-        function handleMouseLeave() {
-            if (tween) {
-                tween.play();
-            }
         }
 
         let resizeTimer = null;
@@ -1390,8 +1365,6 @@ function initMarquee() {
             }
             visibilityObserver.disconnect();
             window.removeEventListener('resize', handleResize);
-            wrap.removeEventListener('mouseenter', handleMouseEnter);
-            wrap.removeEventListener('mouseleave', handleMouseLeave);
         }
 
         wrap._marqueeCleanup = cleanup;
