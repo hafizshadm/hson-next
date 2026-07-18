@@ -1008,6 +1008,10 @@ ul, ol {
   font-size: var(--_brand---scale--font);
   line-height: var(--_brand---line-height--body);
   font-weight: var(--_brand---font-weight--normal);
+  /* The hero wall and marquees can extend past the viewport edge; without this
+     mobile browsers let the page pan sideways, which reads as the layout
+     "distorting" as you scroll. Clip it to the viewport width. */
+  overflow-x: hidden;
 }
 
 .main-wrapper {
@@ -8381,12 +8385,19 @@ a, button, .filter_tag, .industry_tag, .location_tag {
 .partner_plate {
   background-color: #fff;
   border-radius: 0.75em;
-  width: 12em;
-  height: 5.4em;
-  padding: 1em 1.25em;
+  /* Tiles sit on a ~4:3 card instead of the old wide 12 × 5.4em strip, so each
+     logo gets a more balanced, less letterbox-thin plate. Width drives the box;
+     aspect-ratio derives the height so the marquee still measures item widths. */
+  width: 8.5em;
+  aspect-ratio: 4 / 3;
+  height: auto;
+  padding: 0.9em 1.1em;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  /* A soft resting lift so the white tiles read as cards against the black
+     strip, not flat cut-outs. */
+  box-shadow: 0 0.4em 1em rgba(8, 9, 9, 0.18);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: inline-flex;
 }
@@ -8426,7 +8437,9 @@ a, button, .filter_tag, .industry_tag, .location_tag {
 .partners_grid .partner_plate {
   border: 1px solid rgba(8, 9, 9, 0.1);
   width: 100%;
-  height: 6em;
+  /* On the light grid the hairline border carries the card edge; drop the
+     resting lift the marquee tiles use, keep the 4:3 aspect from the base. */
+  box-shadow: none;
 }
 
 .partners_grid .partner_plate:hover {
@@ -8458,11 +8471,12 @@ a, button, .filter_tag, .industry_tag, .location_tag {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .partner_mark,
-  .partner_plate {
-    height: 3.6em;
-    padding: 0 1.1em;
-    font-size: var(--_brand---typography--text--small);
+  /* Marquee tiles shrink on phones; the 4:3 aspect-ratio from the base rule
+     derives the height, so no fixed height here (a set height would cancel it).
+     The grid plates stay width:100% and stay 4:3 automatically. */
+  .partner_mark {
+    width: 7em;
+    padding: 0.7em 0.9em;
   }
 }
 /* ---------------------------------------------------------------------------
@@ -8524,6 +8538,27 @@ a, button, .filter_tag, .industry_tag, .location_tag {
   transform-style: preserve-3d;
   position: absolute;
   inset: 0;
+
+  /* Held back until hson.curve-hero.js has positioned the panels, then faded
+     in. Without this the hero flashes: the panels are absolutely stacked at the
+     stage centre, so they render as one oversized image until the script runs.
+     The failsafe reveals them anyway if the script never arrives — paired with
+     the nth-child fallback below, that degrades to a plain row rather than a
+     pile. */
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  animation: hson-curve-reveal 0s linear 4s forwards;
+}
+
+.curve-stage.is-ready .curve-track {
+  opacity: 1;
+  animation: none;
+}
+
+@keyframes hson-curve-reveal {
+  to {
+    opacity: 1;
+  }
 }
 
 .curve-panel {
@@ -8540,6 +8575,31 @@ a, button, .filter_tag, .industry_tag, .location_tag {
   left: 50%;
   overflow: hidden;
   box-shadow: 0 1.5em 3em rgba(8, 9, 9, 0.18);
+}
+
+/* CSS fallback layout. The panels share one absolute origin, so with no
+   transform they would all sit on top of each other. This lays the first five
+   out as a plain row (the script overrides transform on every frame, so this
+   only ever shows if the script is missing or has not run yet). Offsets are
+   (index - 3) * 16em - 7.5em: 15em panel + 1em gap, less half a panel, because
+   left:50% anchors the panel's left edge to the centre. */
+.curve-panel:nth-child(1) {
+  transform: translate3d(-39.5em, 0, 0);
+}
+.curve-panel:nth-child(2) {
+  transform: translate3d(-23.5em, 0, 0);
+}
+.curve-panel:nth-child(3) {
+  transform: translate3d(-7.5em, 0, 0);
+}
+.curve-panel:nth-child(4) {
+  transform: translate3d(8.5em, 0, 0);
+}
+.curve-panel:nth-child(5) {
+  transform: translate3d(24.5em, 0, 0);
+}
+.curve-panel:nth-child(n + 6) {
+  opacity: 0;
 }
 
 .curve-img {
@@ -8629,4 +8689,28 @@ a, button, .filter_tag, .industry_tag, .location_tag {
     max-width: 38ch;
     font-size: var(--_brand---typography--text--small);
   }
+}
+
+/* ---------------------------------------------------------------------------
+   Typewriter heading reveal (data-text-highlight) — see initTextHighlight().
+   The caret is `currentColor`, so it inherits each section's text colour, and
+   blinks via CSS while the JS re-parents it to follow the last typed letter.
+   --------------------------------------------------------------------------- */
+.typewriter_caret {
+  display: inline-block;
+  width: 0.08em;
+  height: 1.05em;
+  margin-left: 0.06em;
+  background-color: currentColor;
+  vertical-align: -0.14em;
+  animation: typewriter-blink 0.85s steps(1, end) infinite;
+}
+
+@keyframes typewriter-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter_caret { display: none; }
 }

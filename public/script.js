@@ -161,139 +161,97 @@
    }
    
    /* ==========================================================================
-      Text Highlight Marker Reveal (data-text-highlight)
+      Typewriter Reveal (data-text-highlight)
       ----------------------------------------------------------------------------
-      Highlighter-pen reveal: each LINE gets a colored rectangle overlay that
-      sweeps in from the left (covering the line), then sweeps out from the left
-      (revealing the line behind it). The rectangle is `currentColor` so it
-      auto-adapts to the section: white on dark sections, black on light
-      sections — same color as the final text. The viewer sees: empty space →
-      solid block draws across the line → block exits, leaving the text behind.
+      Types the heading out character by character with a blinking caret that
+      follows the last typed letter, then retires the caret shortly after the
+      line finishes. Replaces the old highlighter-pen clip reveal. The text
+      keeps its own CSS colour (white on dark sections, black on light) and the
+      caret is `currentColor`, so no theme switching is needed.
       ----------------------------------------------------------------------------
-      Each line's mini-timeline has 3 stages:
-        1. Rectangle clip-path expands left→right (block draws across line)
-        2. Text inside the line becomes visible (opacity 0 → 1, instant)
-        3. Rectangle clip-path collapses left→right (block exits, exposing text)
-      The mini-timelines are stacked with a per-line offset so the marker
-      cascades through every line. The whole sequence plays ONCE when the
-      element scrolls into view (no scrub) — same trigger model as data-reveal.
+      Every character starts at opacity 0 (but keeps its layout box, so there is
+      no reflow) and is flipped to opacity 1 in sequence. SplitText also splits
+      into lines; each computed line is pinned to `white-space: nowrap` so the
+      caret we insert between characters can never force a mid-word re-wrap.
+      The sequence plays ONCE when the element scrolls into view (no scrub) —
+      same trigger model as data-reveal.
       ----------------------------------------------------------------------------
       Reusable: drop `data-text-highlight` on any heading/paragraph/text element.
       The element MUST have its final width before init (max-width / container)
       so SplitText can compute the line breaks the user actually sees.
       ----------------------------------------------------------------------------
       Optional attributes:
-        data-text-highlight-stagger   per-line time offset (default 0.35)
-        data-text-highlight-duration  per-stage duration in seconds (default 0.7)
-        data-text-highlight-start     ScrollTrigger start (default "top bottom")
+        data-typewriter-speed   seconds per character (default: adaptive — long
+                                headings type a little faster so they don't drag)
+        data-typewriter-start   ScrollTrigger start (default "top 80%")
+                                (data-text-highlight-start is still honoured)
       ========================================================================== */
-   
+
    function initTextHighlight() {
      if (typeof SplitText === "undefined") return;
-   
+
      const targets = gsap.utils.toArray("[data-text-highlight]");
      if (!targets.length) return;
-   
+
+     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
      targets.forEach((el) => {
-       const stagger = parseFloat(el.getAttribute("data-text-highlight-stagger")) || 0.35;
-       const duration = parseFloat(el.getAttribute("data-text-highlight-duration")) || 0.7;
-       const start = el.getAttribute("data-text-highlight-start") || "top bottom";
-   
+       const start =
+         el.getAttribute("data-typewriter-start") ||
+         el.getAttribute("data-text-highlight-start") ||
+         "top 80%";
+
        const split = new SplitText(el, {
-         type: "lines",
-         linesClass: "text-highlight_line",
+         type: "lines,words,chars",
+         linesClass: "typewriter_line",
+         wordsClass: "typewriter_word",
+         charsClass: "typewriter_char",
        });
-       const lines = split.lines;
-       if (!lines.length) return;
-   
-       // Per-line DOM structure (designed so the rect's `width: 100%` follows
-       // the text width, NOT the full line bg, while the rect stays visible
-       // independent of the text's opacity):
-       //
-       //   .text-highlight_line       (block, full line width)
-       //     .text-highlight_text     (inline-block, position: relative —
-       //                               sizes to the text content)
-       //       .text-highlight_inner  (the original line content; opacity 0
-       //                               until the rect-in stage finishes)
-       //       .text-highlight_rect   (absolute, 100% of text wrapper, clipped
-       //                               via clip-path through the timeline)
-       //
-       // Critically the OUTER text wrapper is NOT opacity 0 — only the inner
-       // span is. That way the rect (sibling of the inner span) is visible
-       // from stage 1 onward, instead of inheriting opacity 0 from its parent
-       // and only popping in when the inner span is unhidden.
-       const texts = [];
-       const rects = [];
-       lines.forEach((line) => {
-         gsap.set(line, {
-           display: "block",
-         });
-   
-         // Move existing children into an inner span that we'll hide
-         const inner = document.createElement("span");
-         inner.className = "text-highlight_inner";
-         while (line.firstChild) {
-           inner.appendChild(line.firstChild);
-         }
-         gsap.set(inner, {
-           position: "relative",
-           zIndex: 1,
-           opacity: 0,
-         });
-   
-         // Outer text wrapper sizes to the text content
-         const text = document.createElement("span");
-         text.className = "text-highlight_text";
-         gsap.set(text, {
-           position: "relative",
-           display: "inline-block",
-         });
-   
-         const rect = document.createElement("span");
-         rect.className = "text-highlight_rect";
-         gsap.set(rect, {
-           position: "absolute",
-           top: 0,
-           left: 0,
-           width: "100%",
-           height: "100%",
-           backgroundColor: "currentColor",
-           zIndex: 2,
-           pointerEvents: "none",
-           clipPath: "inset(0% 100% 0% 0%)",
-         });
-   
-         text.appendChild(inner);
-         text.appendChild(rect);
-         line.appendChild(text);
-   
-         texts.push(inner);
-         rects.push(rect);
+       const chars = split.chars;
+       if (!chars.length) return;
+
+       // Keep each computed line on one row so the caret (and the reserved
+       // layout of not-yet-typed characters) can't push a word onto a new line.
+       split.lines.forEach((line) => {
+         line.style.whiteSpace = "nowrap";
        });
-   
-       // Build the master timeline (paused) — we play it on scroll-into-view.
-       // power2.inOut on both stages gives a smooth single-pass feel: rect
-       // accelerates in, decelerates at full width, accelerates out.
+
+       // Reduced motion: SplitText leaves the text fully visible — just stop.
+       if (reduce) return;
+
+       gsap.set(chars, { opacity: 0 });
+
+       // A blinking caret (CSS-animated) that we re-parent after each typed
+       // character so it trails the cursor, then remove once typing settles.
+       const caret = document.createElement("span");
+       caret.className = "typewriter_caret";
+       caret.setAttribute("aria-hidden", "true");
+
+       // Adaptive cadence: shorter headings get a deliberate typewriter pace,
+       // longer ones speed up so a 60-character line doesn't crawl.
+       const each =
+         parseFloat(el.getAttribute("data-typewriter-speed")) ||
+         (chars.length > 42 ? 0.028 : 0.045);
+
        const tl = gsap.timeline({ paused: true });
-   
-       rects.forEach((rect, i) => {
-         const lineTl = gsap.timeline();
-         lineTl
-           .to(rect, {
-             clipPath: "inset(0% 0% 0% 0%)",
-             duration: duration,
-             ease: "power2.inOut",
-           })
-           .set(texts[i], { opacity: 1 })
-           .to(rect, {
-             clipPath: "inset(0% 0% 0% 100%)",
-             duration: duration,
-             ease: "power2.inOut",
-           });
-   
-         tl.add(lineTl, i * stagger);
+       tl.to(chars, {
+         opacity: 1,
+         duration: 0.01,
+         ease: "none",
+         stagger: {
+           each: each,
+           onStart: function () {
+             const c = this.targets()[0];
+             c.parentNode.insertBefore(caret, c.nextSibling);
+           },
+         },
        });
-   
+       // Let the caret blink for a beat after the last letter, then retire it
+       // so the page isn't left with a cursor parked on every heading.
+       tl.call(() => {
+         setTimeout(() => caret.remove(), 1200);
+       });
+
        // Fire once when the heading enters the viewport
        ScrollTrigger.create({
          trigger: el,

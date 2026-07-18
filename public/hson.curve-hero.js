@@ -46,8 +46,30 @@
     var offset = 0;
     var last = 0;
     var paused = false;
+    // Effective curve, softened (or flattened) on small screens. Mobile
+    // browsers repaint the 3D perspective layer on every scroll frame, which
+    // is what makes the hero shear/distort as you scroll — so on phones we drop
+    // to a flat horizontal marquee (angle 0, depth 0) and only taper the depth
+    // on tablets. Recomputed in measure() so it tracks orientation changes.
+    var curAngle = maxAngle;
+    var curDepth = depth;
+
+    function responsiveCurve() {
+      var w = window.innerWidth || document.documentElement.clientWidth;
+      if (w <= 767) {
+        curAngle = 0;
+        curDepth = 0;
+      } else if (w <= 991) {
+        curAngle = maxAngle * 0.55;
+        curDepth = depth * 0.5;
+      } else {
+        curAngle = maxAngle;
+        curDepth = depth;
+      }
+    }
 
     function measure() {
+      responsiveCurve();
       halfStage = stage.offsetWidth / 2 || 1;
       itemW = originals[0].getBoundingClientRect().width || 1;
       gap = parseFloat(stage.getAttribute("data-curve-gap")) || itemW * 0.06;
@@ -75,8 +97,8 @@
 
         var n = x / halfStage; // -1 .. 1 across the visible stage
         var clamped = Math.max(-1.8, Math.min(1.8, n));
-        var z = -(clamped * clamped) * depth;
-        var ry = -clamped * maxAngle;
+        var z = -(clamped * clamped) * curDepth;
+        var ry = -clamped * curAngle;
 
         var el = items[i];
         el.style.transform =
