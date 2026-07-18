@@ -17,9 +17,29 @@ export const metadata = {
     default: "Hson | Making You Visible",
     template: "%s",
   },
+  applicationName: "Hson",
+  keywords: [
+    "marketing agency GCC",
+    "digital marketing Kuwait",
+    "branding agency GCC",
+    "web development GCC",
+    "SEO AEO GEO",
+    "social media management",
+    "content creation",
+    "advertising GCC",
+    "Hson",
+  ],
+  authors: [{ name: "Hson" }],
+  creator: "Hson",
+  publisher: "Hson",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
   icons: {
     icon: [{ url: "/favicon.png", sizes: "32x32", type: "image/png" }],
-    apple: "/assets/images/webclip.png",
+    apple: "/favicon.png",
   },
 };
 

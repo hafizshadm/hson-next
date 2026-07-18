@@ -69,87 +69,17 @@
               <h1 data-text-highlight="" class="contact-hero_heading heading-style-h2">Tell us what you're working on, and what isn't working. That's far more useful than "we need marketing help."</h1>
             </div>
             <div class="contact-hero_right">
-              <div class="w-form">
-                <form id="contact-form" name="contact-form" data-name="Contact Form" method="get" class="contact-hero_form" data-wf-page-id="123" data-wf-element-id="456">
-                  <div class="contact-hero_field">
-                    <div class="contact-hero_field-left">
-                      <div class="contact-hero_field-icon _w-embed"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><use href="#icon-plus"/></svg></div>
-                      <div class="contact-hero_field-label text-style-allcaps">Full Name</div>
-                    </div>
-                    <input class="contact-hero_input w-input" maxlength="256" name="Name" data-name="Name" placeholder="Type Here..." type="text" id="Name" required=""/>
-                  </div>
-                  <div class="contact-hero_field">
-                    <div class="contact-hero_field-left">
-                      <div class="contact-hero_field-icon _w-embed"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><use href="#icon-plus"/></svg></div>
-                      <div class="contact-hero_field-label text-style-allcaps">Company Name</div>
-                    </div>
-                    <input class="contact-hero_input w-input" maxlength="256" name="Company" data-name="Company" placeholder="Type Here..." type="text" id="Company"/>
-                  </div>
-                  <div class="contact-hero_field">
-                    <div class="contact-hero_field-left">
-                      <div class="contact-hero_field-icon _w-embed"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><use href="#icon-plus"/></svg></div>
-                      <div class="contact-hero_field-label text-style-allcaps">Work Email</div>
-                    </div>
-                    <input class="contact-hero_input w-input" maxlength="256" name="Email" data-name="Email" placeholder="Type Here..." type="email" id="Email" required=""/>
-                  </div>
-                  <div class="contact-hero_field">
-                    <div class="contact-hero_field-left">
-                      <div class="contact-hero_field-icon _w-embed"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><use href="#icon-plus"/></svg></div>
-                      <div class="contact-hero_field-label text-style-allcaps">Phone</div>
-                    </div>
-                    <input class="contact-hero_input w-input" maxlength="256" name="Phone" data-name="Phone" placeholder="Type Here..." type="tel" id="Phone"/>
-                  </div>
-                  <div class="contact-hero_field">
-                    <div class="contact-hero_field-left">
-                      <div class="contact-hero_field-icon _w-embed"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><use href="#icon-plus"/></svg></div>
-                      <div class="contact-hero_field-label text-style-allcaps">Location</div>
-                    </div>
-                    <select class="contact-hero_input w-input" name="Location" data-name="Location" id="Location">
-                      <option value="">Select...</option>
-                      <option value="UAE">UAE</option>
-                      <option value="Saudi-Arabia">Saudi Arabia</option>
-                      <option value="Qatar">Qatar</option>
-                      <option value="Kuwait">Kuwait</option>
-                      <option value="Bahrain">Bahrain</option>
-                      <option value="Oman">Oman</option>
-                      <option value="UK">United Kingdom</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </div>
-                  <div class="contact-hero_field">
-                    <div class="contact-hero_field-left">
-                      <div class="contact-hero_field-icon _w-embed"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><use href="#icon-plus"/></svg></div>
-                      <div class="contact-hero_field-label text-style-allcaps">Service of Interest</div>
-                    </div>
-                    <select class="contact-hero_input w-input" name="Service" data-name="Service" id="Service">
-                      <option value="">Select...</option>
-                      <option value="Content Creation">Content Creation</option>
-                      <option value="Social Media Management">Social Media Management</option>
-                      <option value="Ads Management">Ads Management</option>
-                      <option value="Influencer Marketing">Influencer Marketing</option>
-                      <option value="Graphic Design & Branding">Graphic Design & Branding</option>
-                      <option value="Photography & Videography">Photography & Videography</option>
-                      <option value="AI Automations">AI Automations</option>
-                      <option value="Website Design & Development">Website Design & Development</option>
-                      <option value="SEO/AEO/GEO Optimization">SEO/AEO/GEO Optimization</option>
-                      <option value="Web & Mobile App Development">Web & Mobile App Development</option>
-                      <option value="Behavioural Intelligence">Behavioural Intelligence</option>
-                      <option value="Not Sure Yet">Not Sure Yet</option>
-                    </select>
-                  </div>
-                  <div class="contact-hero_field" style="flex-direction: column; align-items: stretch;">
-                    <div class="contact-hero_field-left">
-                      <div class="contact-hero_field-icon _w-embed"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><use href="#icon-plus"/></svg></div>
-                      <div class="contact-hero_field-label text-style-allcaps">What's the current situation?</div>
-                    </div>
-                    <textarea class="contact-hero_input w-input" maxlength="5000" name="Message" data-name="Message" placeholder="Type Here..." id="Message" style="min-height: 6em; text-align: left; padding-top: 0.5em;"></textarea>
-                  </div>
-                  <div class="contact-hero_submit">
-                    <input type="submit" data-wait="Please wait..." class="contact-hero_submit-btn w-button" value="Send Message"/>
-                  </div>
-                </form>
-                <div class="w-form-done"><div>Thank you! Your submission has been received!</div></div>
-                <div class="w-form-fail"><div>Oops! Something went wrong while submitting the form.</div></div>
+              <!-- Calendly inline booking. Replaces the old contact form: visitors
+                   pick a slot directly instead of waiting on an email reply. -->
+              <div class="contact-hero_calendly">
+                <iframe
+                  src="https://calendly.com/hsonagency/marketingconsultation?hide_gdpr_banner=1&background_color=fbf8ed&primary_color=96794a"
+                  title="Book a marketing consultation with Hson"
+                  loading="lazy"
+                  width="100%"
+                  height="720"
+                  frameborder="0"
+                ></iframe>
               </div>
             </div>
           </div>
@@ -174,7 +104,7 @@
               </div>
               <div class="contact_detail-item">
                 <div class="contact_detail-label">Hours</div>
-                <div class="contact_detail-value">Sunday–Thursday, 9AM–9PM Gulf Standard Time</div>
+                <div class="contact_detail-value">Sunday–Thursday, 9AM–9PM (GMT+3)</div>
               </div>
             </div>
           </div>
@@ -199,14 +129,14 @@
                 <div class="faq_title"><div class="text-size-medium">How fast do you respond?</div></div>
                 <div class="faq_icon _w-embed"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><use href="#icon-plus"/></svg></div>
               </div>
-              <div class="faq_wrap"><div class="faq_answer"><p class="faq_answer-text">We reply to every inquiry within one business day, usually much faster during our working hours (Sunday–Thursday, 9AM–9PM GST). If it is urgent, say so in your message and we will prioritise it.</p></div></div>
+              <div class="faq_wrap"><div class="faq_answer"><p class="faq_answer-text">We reply to every inquiry within one business day, usually much faster during our working hours (Sunday–Thursday, 9AM–9PM GMT+3). If it is urgent, say so in your message and we will prioritise it.</p></div></div>
             </div>
             <div class="faq_item">
               <div class="faq_question">
-                <div class="faq_title"><div class="text-size-medium">What happens after I send this form?</div></div>
+                <div class="faq_title"><div class="text-size-medium">What happens after I book a call?</div></div>
                 <div class="faq_icon _w-embed"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><use href="#icon-plus"/></svg></div>
               </div>
-              <div class="faq_wrap"><div class="faq_answer"><p class="faq_answer-text">One of us reads it — not a bot, not an account manager reading from a script. We'll come back with a few clarifying questions or, if it's already clear, a suggested next step: usually a short call to pressure-test the goal before anyone talks scope or budget.</p></div></div>
+              <div class="faq_wrap"><div class="faq_answer"><p class="faq_answer-text">You'll get a calendar invite straight away. On the call one of us — not a bot, not an account manager reading from a script — will ask a few clarifying questions to pressure-test the goal before anyone talks scope or budget.</p></div></div>
             </div>
             <div class="faq_item">
               <div class="faq_question">
@@ -234,7 +164,7 @@
                 <div class="faq_title"><div class="text-size-medium">Can you run everything in both Arabic and English?</div></div>
                 <div class="faq_icon _w-embed"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><use href="#icon-plus"/></svg></div>
               </div>
-              <div class="faq_wrap"><div class="faq_answer"><p class="faq_answer-text">Yes — bilingual is the default, not an add-on. Arabic and English are handled by separate native-level teams rather than one translating the other, so both read like they were written for the Gulf first.</p></div></div>
+              <div class="faq_wrap"><div class="faq_answer"><p class="faq_answer-text">Yes — bilingual is the default, not an add-on. Arabic and English are handled by separate native-level teams rather than one translating the other, so both read like they were written for the market first, not translated.</p></div></div>
             </div>
             <div class="faq_item">
               <div class="faq_question">

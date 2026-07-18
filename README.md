@@ -37,12 +37,6 @@ load. To preserve that behaviour exactly while moving to Next.js:
 | `/team`     | `frontend/team.html`     |                                    |
 | `/partners` | `frontend/partners.html` |                                    |
 | `/contact`  | `frontend/contact.html`  |                                    |
-| `/home-old` | `frontend/home-old.html` | previous arc hero — **noindex**    |
-
-`/home-old` is the homepage's previous hero, kept for comparison. It is a
-near-duplicate of `/`, so it is excluded from `sitemap.js`, disallowed in
-`robots.js`, and carries `robots: { index: false }` plus a canonical to `/`.
-Delete all four when it is no longer needed.
 
 To add a route: create `frontend/<page>.html`, register it in the `pages` array
 in `scripts/generate-content.mjs`, add a script manifest entry in

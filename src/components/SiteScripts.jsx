@@ -19,17 +19,13 @@ const GSAP_STACK = [
  * proxies on the server, so SCRIPTS.home would arrive as undefined).
  */
 const SCRIPTS = {
-  // Home's hero is the 3D curved wall, which needs its own self-contained
-  // script (no GSAP dependency; binds only to [data-curve-marquee]).
+  // Home's hero is the 3D curved wall. Its script goes FIRST: the panels are
+  // stacked at the stage centre until it positions them, so every millisecond
+  // it spends queued behind jQuery/Webflow/GSAP is a millisecond the hero shows
+  // as one oversized image. It has no dependencies, so nothing is gained by
+  // making it wait.
   home: [
-    "/assets/jquery.min.js",
-    "/assets/hsn.schunk.js",
-    "/assets/hsn.main.js",
-    ...GSAP_STACK,
     "/hson.curve-hero.js",
-  ],
-  // The previous arc-marquee hero, archived at /home-old.
-  "home-old": [
     "/assets/jquery.min.js",
     "/assets/hsn.schunk.js",
     "/assets/hsn.main.js",

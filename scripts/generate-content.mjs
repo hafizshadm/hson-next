@@ -21,8 +21,6 @@ const pages = [
   { file: "contact.html", out: "contact.js" },
   { file: "team.html", out: "team.js" },
   { file: "partners.html", out: "partners.js" },
-  // Previous hero, kept reachable at /home-old for comparison. noindex.
-  { file: "home-old.html", out: "home-old.js" },
 ];
 
 function extractBody(html) {

@@ -1,0 +1,45 @@
+# Hson
+
+> Hson is a marketing, branding, and web agency for the GCC and the UK. One team
+> runs strategy, content, ads, branding, SEO/AEO/GEO, and web/app development —
+> so a campaign and the website it points to are built together, not handed
+> between separate vendors. Tagline: "Making You Visible."
+
+## What Hson does
+
+- One in-house team for strategy, creative, and build (no outsourcing to rotating freelancers).
+- Native-level Arabic and English content, written for each market rather than translated.
+- Works with SMEs and regional enterprises, and helps international brands enter the GCC.
+
+## Services
+
+- Content Creation — campaign, social, and brand content in Arabic and English.
+- Social Media Management — channel management, content calendars, community.
+- Ads Management — paid social and search, built and optimised for results.
+- Influencer Marketing — creator partnerships matched to the GCC audience.
+- Graphic Design & Branding — visual identity and brand systems.
+- Photography & Videography — studio and on-location shoots.
+- AI Automations — marketing and workflow automations.
+- Website Design & Development — fast, search-ready marketing sites.
+- SEO / AEO / GEO Optimization — ranking on search, answer, and generative engines.
+- Web & Mobile App Development — custom web and mobile applications.
+- Behavioural Intelligence — audience research and behavioural insight.
+
+## Where Hson works
+
+United Arab Emirates, Saudi Arabia, Qatar, Kuwait, Bahrain, Oman, and the United
+Kingdom. Most work happens remotely, so location is not a constraint.
+
+## Pages
+
+- Home: /
+- About: /about
+- Services: /services
+- Team: /team
+- Trusted Partners: /partners
+- Contact: /contact
+
+## Contact
+
+- Instagram: https://www.instagram.com/hson.agency/
+- Book a meeting: https://calendly.com/hsonagency/marketingconsultation

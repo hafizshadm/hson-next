@@ -1,6 +1,6 @@
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://hsonnext.vercel.app";
 
-// Every indexable route. /home-old is deliberately absent: it duplicates /.
+// Every indexable route.
 const ROUTES = [
   { path: "/", priority: 1.0 },
   { path: "/about", priority: 0.8 },
