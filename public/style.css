@@ -2508,10 +2508,18 @@ ul, ol {
 }
 
 /* Calendly inline embed that replaced the contact form. A white card so the
-   widget's own chrome reads cleanly against the section. */
+   widget's own chrome reads cleanly against the section. Given its own column,
+   it breaks the hero's 50% right column to the full width so the calendar and
+   time slots lay out side by side, and it is tall enough that the widget never
+   needs its own inner scrollbar. */
+.contact-hero_right:has(.contact-hero_calendly) {
+  width: 100%;
+  margin-left: 0;
+}
+
 .contact-hero_calendly {
   width: 100%;
-  min-height: 720px;
+  min-height: 1000px;
   background-color: #fff;
   border-radius: 0.75em;
   overflow: hidden;
@@ -2520,15 +2528,16 @@ ul, ol {
 .contact-hero_calendly iframe {
   display: block;
   width: 100%;
-  min-height: 720px;
+  min-height: 1000px;
   border: 0;
 }
 
-/* The Calendly widget stacks vertically on narrow screens and needs the room. */
+/* On narrow screens Calendly stacks the calendar above the time list, so it
+   needs more height to avoid an inner scroll. */
 @media screen and (max-width: 767px) {
   .contact-hero_calendly,
   .contact-hero_calendly iframe {
-    min-height: 1050px;
+    min-height: 1300px;
   }
 }
 
