@@ -7210,9 +7210,16 @@ a, button, .filter_tag, .industry_tag, .location_tag {
 /* ---------------------------------------------------------------------------
    Index List — condensed numbered service rows (homepage teaser)
    --------------------------------------------------------------------------- */
+/* Two columns that read top-to-bottom (01-06 | 07-11) rather than left-to-right,
+   so the DOM can stay in plain 01..11 order and still collapse to a correctly
+   numbered single column on mobile. --index-list-rows is the height of the
+   first column: bump it when services are added or removed. */
 .index-list {
+  --index-list-rows: 6;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(var(--index-list-rows), auto);
+  grid-auto-flow: column;
   column-gap: 4em;
 }
 
@@ -7290,6 +7297,8 @@ a, button, .filter_tag, .industry_tag, .location_tag {
 @media screen and (max-width: 767px) {
   .index-list {
     grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-auto-flow: row;
   }
 }
 
