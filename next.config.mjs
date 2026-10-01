@@ -19,9 +19,12 @@ const nextConfig = {
   // production deployment through a *.vercel.app hostname (hsonnext.vercel.app
   // and the per-deployment URLs) is 301'd path-for-path to the brand domain, so
   // backlinks pointing at the Vercel URL pass their equity to hsonagency.com.
-  // Scoped to production builds so preview deployments stay reachable.
+  // Scoped to production builds so preview deployments stay reachable, and
+  // off until ENABLE_DOMAIN_REDIRECT=1 is set in Vercel: turning it on while
+  // hsonagency.com doesn't resolve would take the whole site offline.
   async redirects() {
     if (process.env.VERCEL_ENV !== "production") return [];
+    if (process.env.ENABLE_DOMAIN_REDIRECT !== "1") return [];
     return [
       {
         source: "/:path*",

@@ -99,13 +99,16 @@ canonical tag, `og:url`/`og:image`, `sitemap.xml`, `robots.txt`, JSON-LD node
 and `llms.txt` link is built from it. `NEXT_PUBLIC_SITE_URL` can override it,
 but a `*.vercel.app` value is ignored on purpose.
 
-- **Production** builds 301 any `*.vercel.app` host (e.g. `hsonnext.vercel.app`)
-  path-for-path to `https://hsonagency.com` (`next.config.mjs`), so backlinks
-  to the Vercel URL pass their equity to the brand domain.
+- **Production** builds with `ENABLE_DOMAIN_REDIRECT=1` 301 any `*.vercel.app`
+  host (e.g. `hsonnext.vercel.app`) path-for-path to `https://hsonagency.com`
+  (`next.config.mjs`), so backlinks to the Vercel URL pass their equity to the
+  brand domain.
 - **Preview** builds serve `Disallow: /` in robots.txt and an
   `X-Robots-Tag: noindex` header, and are not redirected.
 
 Vercel setup: in Project → Settings → Domains, add `hsonagency.com` (and
 `www.hsonagency.com` redirecting to it) and confirm both show "Valid
-Configuration" **before** deploying, because the redirect sends all
-`vercel.app` traffic to the brand domain.
+Configuration". Only then add the environment variable
+`ENABLE_DOMAIN_REDIRECT=1` (Production) and redeploy — the redirect sends all
+`vercel.app` traffic to the brand domain, so enabling it early takes the site
+offline.
