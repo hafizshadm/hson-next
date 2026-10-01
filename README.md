@@ -91,3 +91,21 @@ Deploys to Vercel with zero configuration (framework preset: Next.js).
 
 Set `NEXT_PUBLIC_SITE_URL` to your production URL so Open Graph image URLs are
 absolute (defaults to a Vercel placeholder otherwise).
+
+## Domain & SEO
+
+`https://hsonagency.com` is the only canonical host (`src/lib/site.js`). Every
+canonical tag, `og:url`/`og:image`, `sitemap.xml`, `robots.txt`, JSON-LD node
+and `llms.txt` link is built from it. `NEXT_PUBLIC_SITE_URL` can override it,
+but a `*.vercel.app` value is ignored on purpose.
+
+- **Production** builds 301 any `*.vercel.app` host (e.g. `hsonnext.vercel.app`)
+  path-for-path to `https://hsonagency.com` (`next.config.mjs`), so backlinks
+  to the Vercel URL pass their equity to the brand domain.
+- **Preview** builds serve `Disallow: /` in robots.txt and an
+  `X-Robots-Tag: noindex` header, and are not redirected.
+
+Vercel setup: in Project → Settings → Domains, add `hsonagency.com` (and
+`www.hsonagency.com` redirecting to it) and confirm both show "Valid
+Configuration" **before** deploying, because the redirect sends all
+`vercel.app` traffic to the brand domain.

@@ -32,14 +32,15 @@ Kingdom. Most work happens remotely, so location is not a constraint.
 
 ## Pages
 
-- Home: /
-- About: /about
-- Services: /services
-- Team: /team
-- Trusted Partners: /partners
-- Contact: /contact
+- [Home](https://hsonagency.com/): overview, services index, and FAQ
+- [About](https://hsonagency.com/about): who Hson is and how the team works
+- [Services](https://hsonagency.com/services): the eleven services in detail
+- [Team](https://hsonagency.com/team): the in-house team
+- [Trusted Partners](https://hsonagency.com/partners): brands Hson has worked with
+- [Contact](https://hsonagency.com/contact): book a consultation
 
 ## Contact
 
+- Website: https://hsonagency.com
 - Instagram: https://www.instagram.com/hson.agency/
 - Book a meeting: https://calendly.com/hsonagency/marketingconsultation

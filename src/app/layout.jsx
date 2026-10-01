@@ -5,14 +5,12 @@ import "./mobile-nav.css";
 import "./loader.css";
 import MobileNav from "@/components/MobileNav";
 import Loader from "@/components/Loader";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata = {
-  // Open Graph image URLs must be absolute, so this has to match the domain the
-  // site actually serves from or link previews resolve to a dead host. Override
-  // with NEXT_PUBLIC_SITE_URL once a custom domain is attached.
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://hsonnext.vercel.app"
-  ),
+  // Every relative canonical/og:url/og:image resolves against this, so it must
+  // be the production brand domain (see lib/site.js), never the Vercel host.
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Hson | Making You Visible",
     template: "%s",
