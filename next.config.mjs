@@ -14,6 +14,38 @@ const nextConfig = {
   // else and leave a running dev server alone. Defaults to .next, so normal
   // dev/build/deploy (including Vercel) is unchanged.
   distDir: process.env.NEXT_DIST_DIR || ".next",
+
+  // hsonagency.com is the only canonical host. Any request that reaches a
+  // production deployment through a *.vercel.app hostname (hsonnext.vercel.app
+  // and the per-deployment URLs) is 301'd path-for-path to the brand domain, so
+  // backlinks pointing at the Vercel URL pass their equity to hsonagency.com.
+  // Scoped to production builds so preview deployments stay reachable, and
+  // off until ENABLE_DOMAIN_REDIRECT=1 is set in Vercel: turning it on while
+  // hsonagency.com doesn't resolve would take the whole site offline.
+  async redirects() {
+    if (process.env.VERCEL_ENV !== "production") return [];
+    if (process.env.ENABLE_DOMAIN_REDIRECT !== "1") return [];
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: ".+\\.vercel\\.app" }],
+        destination: "https://hsonagency.com/:path*",
+        statusCode: 301,
+      },
+    ];
+  },
+
+  // Belt-and-braces with app/robots.js: preview deployments send noindex on
+  // every response, so a stray link to one can never get it indexed.
+  async headers() {
+    if (!process.env.VERCEL_ENV || process.env.VERCEL_ENV === "production") return [];
+    return [
+      {
+        source: "/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

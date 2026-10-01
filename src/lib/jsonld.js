@@ -5,7 +5,7 @@
 // content that is actually visible on the pages (a requirement for FAQ/Service
 // markup), and nothing is fabricated.
 
-const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://hsonnext.vercel.app";
+import { SITE_URL as SITE } from "@/lib/site";
 const ORG_ID = `${SITE}/#organization`;
 
 const AREA_SERVED = [

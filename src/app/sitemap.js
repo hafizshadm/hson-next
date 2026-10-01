@@ -1,4 +1,4 @@
-const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://hsonnext.vercel.app";
+import { SITE_URL as SITE } from "@/lib/site";
 
 // Every indexable route.
 const ROUTES = [
