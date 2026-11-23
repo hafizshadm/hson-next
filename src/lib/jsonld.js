@@ -5,7 +5,7 @@
 // content that is actually visible on the pages (a requirement for FAQ/Service
 // markup), and nothing is fabricated.
 
-import { SITE_URL as SITE } from "@/lib/site";
+import { SITE_URL as SITE, CONTACT_EMAIL } from "@/lib/site";
 const ORG_ID = `${SITE}/#organization`;
 
 const AREA_SERVED = [
@@ -56,6 +56,15 @@ export function organization() {
     slogan: "Making You Visible",
     description:
       "Hson is a marketing, branding, and web agency for the GCC and the UK. One team runs strategy, content, ads, branding, SEO/AEO/GEO, and web/app development, so a campaign and the website it points to are built together.",
+    email: CONTACT_EMAIL,
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      email: CONTACT_EMAIL,
+      url: `${SITE}/contact`,
+      availableLanguage: ["English", "Arabic"],
+      areaServed: AREA_SERVED,
+    },
     sameAs: ["https://www.instagram.com/hson.agency/"],
     areaServed: AREA_SERVED,
     knowsAbout: SERVICES.map((s) => s.name),
