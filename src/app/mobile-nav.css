@@ -117,6 +117,8 @@
   .hson-mobile-menu.is-open .hson-mobile-menu_link:nth-child(2) { animation-delay: 0.14s; }
   .hson-mobile-menu.is-open .hson-mobile-menu_link:nth-child(3) { animation-delay: 0.2s; }
   .hson-mobile-menu.is-open .hson-mobile-menu_link:nth-child(4) { animation-delay: 0.26s; }
+  .hson-mobile-menu.is-open .hson-mobile-menu_link:nth-child(5) { animation-delay: 0.32s; }
+  .hson-mobile-menu.is-open .hson-mobile-menu_link:nth-child(6) { animation-delay: 0.38s; }
 
   .hson-mobile-menu_link:active {
     opacity: 0.55;
@@ -138,7 +140,7 @@
   }
 
   .hson-mobile-menu.is-open .hson-mobile-menu_cta {
-    animation: hsonMenuItemIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.32s forwards;
+    animation: hsonMenuItemIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.44s forwards;
   }
 }
 
@@ -162,5 +164,12 @@
   .hson-burger span {
     transition: none;
     animation: none;
+  }
+  /* With the entrance animation off, the items must start visible: their base
+     state is opacity 0, so without this the open menu is blank. */
+  .hson-mobile-menu.is-open .hson-mobile-menu_link,
+  .hson-mobile-menu.is-open .hson-mobile-menu_cta {
+    opacity: 1;
+    transform: none;
   }
 }

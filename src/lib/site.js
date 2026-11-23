@@ -21,3 +21,7 @@ function resolveSiteUrl() {
 }
 
 export const SITE_URL = resolveSiteUrl();
+
+// The only public contact channel. Shown on /contact, in the footer, in
+// JSON-LD, and used as the default recipient of project briefs.
+export const CONTACT_EMAIL = "info@hsonagency.com";

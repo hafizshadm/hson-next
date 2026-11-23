@@ -37,10 +37,11 @@ Kingdom. Most work happens remotely, so location is not a constraint.
 - [Services](https://hsonagency.com/services): the eleven services in detail
 - [Team](https://hsonagency.com/team): the in-house team
 - [Trusted Partners](https://hsonagency.com/partners): brands Hson has worked with
-- [Contact](https://hsonagency.com/contact): book a consultation
+- [Contact](https://hsonagency.com/contact): send a project brief or book a consultation
 
 ## Contact
 
+- Email: info@hsonagency.com
 - Website: https://hsonagency.com
 - Instagram: https://www.instagram.com/hson.agency/
 - Book a meeting: https://calendly.com/hsonagency/marketingconsultation
